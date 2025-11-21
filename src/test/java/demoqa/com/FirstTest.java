@@ -1,4 +1,4 @@
-package example;
+package demoqa.com;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Page;

@@ -1,4 +1,4 @@
-package example;
+package demoqa.com;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
