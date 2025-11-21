@@ -30,7 +30,7 @@ public class PlaywrightFundamentalsTest {
     // ============ Второй метод Заверщение работы браузера tearDown ======================
 
     @AfterAll
-    void closeBrowser(){
+    static void closeBrowser(){
         browser.close();
         playwright.close();
     }
@@ -76,7 +76,7 @@ public class PlaywrightFundamentalsTest {
 
         // ? -------------------- 3.ВЗАИМОДЕЙСТВИЕ С ЭЛЕМЕНТАМИ ---------------------------------
 
-        //Fill vs Ttpe
+        //Fill vs Type
         fullNameLabel.fill("Иван Иванов"); // Быстрое заполнение
 
         Locator emailInput = page.locator("#userEmail");
@@ -101,7 +101,7 @@ public class PlaywrightFundamentalsTest {
 
         //Проверка атрибута
         Locator emailResult = page.locator("#email");
-        assertEquals("test@example.com", emailResult.textContent().replace("Email",
+        assertEquals(":test@example.com", emailResult.textContent().replace("Email",
                 "").trim(), "Неверный email в результате");
 
         // ? -------------------- 5.РАБОТА С ЧЕКБОКСАМИ И РАДИО КНОПКАМИ ---------------------------------
