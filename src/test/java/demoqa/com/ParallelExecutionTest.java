@@ -31,7 +31,7 @@ public class ParallelExecutionTest {
         void testGoogleTitle() {
             Playwright playwright = Playwright.create();
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                    .setHeadless(false));
+                    .setHeadless(true));
 
             BrowserContext context = browser.newContext();
             Page page = context.newPage();
@@ -48,7 +48,7 @@ public class ParallelExecutionTest {
         void testPlaywrightDocs() {
             Playwright playwright = Playwright.create();
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                    .setHeadless(false));
+                    .setHeadless(true));
 
             BrowserContext context = browser.newContext();
             Page page = context.newPage();
@@ -65,7 +65,7 @@ public class ParallelExecutionTest {
         void testWikipedia() {
             Playwright playwright = Playwright.create();
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                    .setHeadless(false));
+                    .setHeadless(true));
 
             BrowserContext context = browser.newContext();
             Page page = context.newPage();
