@@ -25,38 +25,55 @@ public class ParallelExecutionTest {
         playwright.close();
     }
 
-    // ? -------------------- 1.ТЕСТ ПРОВЕРКА ЗАГОЛОВКА GOOGLE---------------------------------
 
-    @Test
-    void testGoogleTitle(){
-        BrowserContext context = browser.newContext();
-        Page page = context.newPage();
-        page.navigate("https://google.com");
-        assertTrue(page.title().contains("Google"));
-        context.close();
+        // ? -------------------- 1.ТЕСТ ПРОВЕРКА ЗАГОЛОВКА GOOGLE---------------------------------
+        @Test
+        void testGoogleTitle() {
+            Playwright playwright = Playwright.create();
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                    .setHeadless(false));
+
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            page.navigate("https://google.com");
+            assertTrue(page.title().contains("Google"));
+
+            context.close();
+            browser.close();
+            playwright.close();
+        }
+
+        // ? -------------------- 2.ТЕСТ ПРОВЕРКА Playwright документацию---------------------------------
+        @Test
+        void testPlaywrightDocs() {
+            Playwright playwright = Playwright.create();
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                    .setHeadless(false));
+
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            page.navigate("https://playwright.dev/java");
+            assertTrue(page.title().contains("Playwright"));
+
+            context.close();
+            browser.close();
+            playwright.close();
+        }
+
+        // ? -------------------- 3.ТЕСТ ПРОВЕРКА Wikipedia ---------------------------------
+        @Test
+        void testWikipedia() {
+            Playwright playwright = Playwright.create();
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                    .setHeadless(false));
+
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            page.navigate("https://en.wikipedia.org");
+            assertTrue(page.title().contains("Wikipedia"));
+
+            context.close();
+            browser.close();
+            playwright.close();
+        }
     }
-
-    // ? -------------------- 2.ТЕСТ ПРОВЕРКА Playwright документацию---------------------------------
-
-    @Test
-    void  testPlaywrightDocs(){
-        BrowserContext context = browser.newContext();
-        Page page = context.newPage();
-        page.navigate("https://playwright.dev/java");
-        assertTrue(page.title().contains("Playwright"));
-        context.close();
-    }
-
-    // ? -------------------- 3.ТЕСТ ПРОВЕРКА Wikipedia ---------------------------------
-
-    @Test
-    void testWikipedia(){
-        BrowserContext context = browser.newContext();
-        Page page = context.newPage();
-        page.navigate("https://en.wikipedia.org");
-        assertTrue(page.title().contains("Wikipedia"));
-        context.close();
-    }
-
-
-}
