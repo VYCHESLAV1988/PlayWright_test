@@ -1,10 +1,10 @@
 package demoqa.com;
 
 import com.microsoft.playwright.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import java.nio.file.Paths;
+import java.sql.SQLOutput;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -54,100 +54,32 @@ public class FrameMasterTest {
         FrameLocator childFrame = parentFrame.frameLocator("iframe");
 
         // 7. Проверка текста в дочерном фрейме
+        assertThat(childFrame.locator("body"))
+                .containsText("Child Iframe");
 
+        // 8. Делаем скриншот содержимого фрейма
+        parentFrame.locator("body")
+                .screenshot(new Locator.ScreenshotOptions()
+                        .setPath(Paths.get("parent_frame.png")));
 
+        // 9. Демонстрация работы с динамическими фреймами
+        // (В учебных целях - используем тот же фрейм)
+        page.frameLocator("#frame1").locator("body").click();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println("Все шаги выполнены успешно!");
 
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @AfterEach
+    void closeContext() {
+        context.close();
+    }
 
     @AfterAll
-    static void tearDown(){
+    static void tearDown() {
         browser.close();
         playwright.close();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
